@@ -1,0 +1,12 @@
+{
+  "name": "simple-todo-backend",
+  "version": "1.0.0",
+  "description": "Nothing Now",
+  "license": "ISC",
+  "author": "piyalst",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "test": "st"
+  }
+}
