@@ -11,4 +11,9 @@
 
 * {
   font-family: "Lato", sans-serif;
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  scrollbar-width: none;
 }
