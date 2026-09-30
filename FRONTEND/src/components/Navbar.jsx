@@ -9,43 +9,43 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="w-full md:w-25 h-screen bg-white flex justify-center">
+      <div className="min-w-25 h-screen bg-white dark:bg-dark/90 flex justify-center">
         {openSidebar ? (
           <div>
-            <div className="my-8 pb-4 border-b border-gray-200 py-2 px-2 rounded-md cursor-pointer active:scale-95">
+            <div className="my-8 pb-4 border-b border-gray-200 dark:border-gray-600 py-2 px-2 rounded-md cursor-pointer active:scale-95">
               <Menu
                 onClick={() => setOpenSidebar(!openSidebar)}
-                className="w-12 cursor-pointer text-black duration-300 transition-all active:scale-95"
+                className="w-12 cursor-pointer text-black dark:text-gray-100 duration-300 transition-all active:scale-95"
               />
             </div>
             <div className="space-y-4">
-              <div className="hover:bg-bglight py-2 px-2 rounded-md cursor-pointer active:scale-95">
+              <div className="hover:bg-bglight group py-2 px-2 rounded-md cursor-pointer active:scale-95">
                 <ScrollText
                   onClick={() => navigate("/")}
-                  className="w-12 cursor-pointer text-black duration-300 transition-all"
+                  className="w-12 cursor-pointer text-black dark:text-gray-400 group-hover:text-gray-800 duration-300 transition-all"
                 />
               </div>
-              <div className="hover:bg-bglight py-2 px-2 rounded-md cursor-pointer active:scale-95">
+              <div className="hover:bg-bglight group py-2 px-2 rounded-md cursor-pointer active:scale-95">
                 <Settings
                   onClick={() => navigate("/setting")}
-                  className="w-12 cursor-pointer text-black duration-300 transition-all"
+                  className="w-12 cursor-pointer text-black dark:text-gray-400 group-hover:text-gray-800 duration-300 transition-all"
                 />
               </div>
-              <div className="hover:bg-bglight py-2 px-2 rounded-md cursor-pointer active:scale-95">
+              <div className="hover:bg-bglight group py-2 px-2 rounded-md cursor-pointer active:scale-95">
                 <LogIn
                   onClick={() => navigate("/login")}
-                  className="w-12 cursor-pointer text-black duration-300 transition-all"
+                  className="w-12 cursor-pointer text-black dark:text-gray-400 group-hover:text-gray-800 duration-300 transition-all"
                 />
               </div>
             </div>
           </div>
         ) : (
           // {/* Open Side Menu */}
-          <div className="w-80">
+          <div className="w-80 dark:text-gray-100">
             <div className="mt-4">
               <Menu
                 onClick={() => setOpenSidebar(!openSidebar)}
-                className="w-12 cursor-pointer text-black duration-300 transition-all active:scale-95"
+                className="w-12 cursor-pointer text-black dark:text-gray-100 duration-300 transition-all active:scale-95"
               />
             </div>
             <div className="flex flex-col items-center justify-center gap-2 border-b border-gray-300 py-8 mx-6">
@@ -57,8 +57,8 @@ const Navbar = () => {
                 />
               </div>
               <div className="text-center">
-                <h2 className="font-semibold text-gray-900">Jane Joe</h2>
-                <p className="font-medium text-gray-600">janejoe@gmail.com</p>
+                <h2 className="font-semibold text-gray-900 dark:text-gray-100">Jane Joe</h2>
+                <p className="font-medium text-gray-600 dark:text-gray-400">janejoe@gmail.com</p>
               </div>
             </div>
             <div className="mt-8 space-y-2">

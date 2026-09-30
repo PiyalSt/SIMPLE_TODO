@@ -4,9 +4,12 @@
 /* import tailwindcss */
 @import "tailwindcss";
 
+/* dark: prefix ta ekhon class diye kaj korbe (system setting diye na) */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --color-bglight: #f3f4f6;
-  --color-bgdark: #101828;
+  --color-dark: #101828;
 }
 
 * {

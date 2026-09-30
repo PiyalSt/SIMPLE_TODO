@@ -1,4 +1,4 @@
-import { Moon, Plus } from "lucide-react";
+import { Moon, Plus, Sun } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import assets from "../assets/assets";
 import Task from "../components/Task";
@@ -8,6 +8,26 @@ import axios from "axios";
 const Home = () => {
   const [task, setTask] = useState("");
   const [taskArray, setTaskArray] = useState([]);
+
+  // add dark theme
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+
+  useEffect(() => {
+    const root = document.documentElement;
+
+    if (theme === "dark") {
+      root.classList.add("dark");
+    } else {
+      root.classList.remove("dark");
+    }
+
+    // page reload dileo jeno theme mone thake
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(theme === "light" ? "dark" : "light");
+  };
 
   const handleTask = async () => {
     if (!task) {
@@ -99,19 +119,29 @@ const Home = () => {
   };
 
   return (
-    <div className="w-full min-h-screen bg-bglight">
+    <div className="w-full min-h-screen bg-bglight dark:bg-dark">
       <div className="w-full h-[10%] flex items-center justify-end">
-        <Moon className="w-12 pr-6 cursor-pointer active:scale-95 transition-all duration-200" />
+        {theme === "light" ? (
+          <Moon
+            onClick={toggleTheme}
+            className="w-12 pr-6 cursor-pointer active:scale-95 transition-all duration-200"
+          />
+        ) : (
+          <Sun
+            onClick={toggleTheme}
+            className="w-12 pr-6 cursor-pointer active:scale-95 transition-all duration-200 text-gray-100"
+          />
+        )}
       </div>
       <div className="w-full h-[80%] flex flex-col">
-        <h2 className="text-5xl text-gray-800 font-bold text-center">
+        <h2 className="text-5xl text-gray-800 dark:text-gray-100 font-bold text-center">
           My Tasks
         </h2>
         <div className="flex gap-4 justify-center mt-8">
           <input
             onChange={(e) => setTask(e.target.value)}
             value={task}
-            className="w-130 py-2 px-4 bg-white shadow-2xl rounded-md outline-0 text-base text-gray-900"
+            className="w-130 py-2 px-4 bg-white dark:bg-gray-700/50 shadow-2xl rounded-md outline-0 text-base text-gray-900 dark:text-gray-100"
             type="text"
             placeholder="Type your task here..."
           />
@@ -127,9 +157,9 @@ const Home = () => {
         {taskArray.length > 0 ? (
           // Adding task
           <div className="flex-1 overflow-y-auto mt-4">
-            <div className="w-200 mx-auto flex justify-between py-4 px-4 border-b border-gray-300">
-              <h2 className="text-base font-medium text-gray-950">All</h2>
-              <h2 className="text-base font-medium text-gray-900">
+            <div className="w-200 mx-auto flex justify-between py-4 px-4 border-b border-gray-300 dark:border-gray-700">
+              <h2 className="text-base font-medium text-gray-900 dark:text-gray-100">All</h2>
+              <h2 className="text-base font-medium text-gray-900 dark:text-gray-100">
                 {taskArray.length} {taskArray.length === 1 ? "task" : "tasks"}
               </h2>
             </div>
@@ -158,7 +188,7 @@ const Home = () => {
           </div>
         )}
       </div>
-      <div className="w-full h-[10%] flex items-center justify-center">
+      <div className="w-full h-[10%] flex items-center justify-center dark:text-gray-100">
         &copy; <span className="italic">2026 || PIYALST</span>
       </div>
     </div>

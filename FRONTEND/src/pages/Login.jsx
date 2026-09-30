@@ -17,6 +17,24 @@ const Login = () => {
       toast.error("Please enter password!");
       return;
     }
+    try {
+      const { data } = await axios.post(
+        "http://localhost:4000/api/todo/v1/users/login",
+        {
+          email,
+          password,
+        },
+      );
+
+      // token localStorage-এ রাখলাম, পরবর্তী protected request-এ ব্যবহার হবে
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
+
+      toast.success(data.message);
+      navigate("/"); // Home page এ পাঠাও
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Something went wrong");
+    }
   };
 
   return (
